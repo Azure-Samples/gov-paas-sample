@@ -127,7 +127,7 @@ Once you have gone through all of the steps above, you are ready to run your sam
 
 #### Test after deployment
 1. Navigate to the [Azure Government portal](https://portal.azure.us) and click on "Azure Active Directory" -> "App Registrations -> InventoryApp -> Reply URLS. Make sure the reply url is your application url with "/signin-oidc" at the end. You can get your application url by navigating to "App Services" from the portal. 
-2. After the sample has been deployed to your web app, you should be able to navigate to your app url and see that it ends in ".azurewebsites.us". 
+2. After the [sample has been deployed to your web app](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-howto-deploy-webandmobile#deploy-a-web-app-to-azure-government), you should be able to navigate to your app url and see that it ends in ".azurewebsites.us". 
 3. After logging in, you should see the InventoryApp main page. You should be able to create, edit, and delete items. 
 4. If an item has the quantity of 0, the item will be written to your queue. You can see that this was done succesfully by using the [Azure Storage Explorer](https://docs.microsoft.com/azure/azure-government/documentation-government-get-started-connect-to-storage) or looking at your queue through the portal. 
 5. The items with quantity 0 are also written to the redis cache, and when you click on the "Products to Restock" button the items will be read from the cache and displayed on the page.
