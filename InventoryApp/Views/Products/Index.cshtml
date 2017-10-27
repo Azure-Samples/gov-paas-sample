@@ -1,0 +1,38 @@
+﻿@model List<InventoryApp.Models.Product>
+
+<h2>Products</h2>
+<a asp-controller="Products" asp-action="Create" class="btn btn-primary">Add New Product</a>
+<a asp-controller="Products" asp-action="DisplayRestock" class="btn btn-primary">Products to Restock</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in this.Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-info">Edit</a>
+                        </div>
+                        <div class="col-md-1">
+                            <form asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

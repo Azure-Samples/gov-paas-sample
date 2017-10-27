@@ -1,0 +1,24 @@
+﻿@model List<InventoryApp.Models.RestockProducts>
+
+<h2>Restock these Products!</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in this.Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+<a asp-action="Index">Back to List</a>
+</div>
