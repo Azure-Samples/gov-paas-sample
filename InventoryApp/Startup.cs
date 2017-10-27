@@ -32,8 +32,6 @@ namespace InventoryApp
             //Add DB
             services.AddDbContext<MyDB>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-            // Add application services
-            services.AddScoped<Irepository, Repository>();
             //Add migration for db
             services.BuildServiceProvider().GetService<MyDB>().Database.Migrate();
             //Add AAD authentication
