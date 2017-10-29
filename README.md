@@ -69,7 +69,7 @@ The only variation when setting up AAD Authorization on the Azure Government clo
 7. The services.AddAuthentication method is where the AAD authentication is added. 
 
 ### Step 4: Connect to Azure SQL Database
-#### Variations
+#### Azure Government Variations
 The only variation lies in the endpoint suffix when connecting to your Azure SQL Database:
 - "database.usgovcloudapi.net"
 
@@ -77,13 +77,14 @@ The only variation lies in the endpoint suffix when connecting to your Azure SQL
 >If you clicked on the "Deploy to Azure Government" button, you can skip step 1.
 >
 >
+
 1. Navigate to the [Azure Government Portal](https://portal.azure.us) and [create an Azure SQL Server and Database](https://docs.microsoft.com/en-us/azure/sql-database/). Make sure you save your server admin and password.
 2. Now we must create the table that the application will write to. In this project find the "ProductTable.sql" file and run the query on your Azure SQL Database (using a SQL Server tool such as SQL Server Management Studio). 
 3. Open the appsettings.json file and navigate to the `Connection Strings` section. 
 4. Find the `DefaultConnection` property and replace the value with your Azure SQL Server connection string. In order to get the connection string, go to the Portal and navigate to your SQL Database -> connection strings. Grab the "primary" connection string and replace the User Id and Pasword properties with your server admin and password.	
 
 ### Step 5: Connect to Azure Storage
-#### Variations
+#### Azure Government Variations
 The only variation lies in the endpoint suffix when connecting to your Azure Government storage account. 
 - "core.usgovcloudapi.net"
 
@@ -100,10 +101,9 @@ The only variation lies in the endpoint suffix when connecting to your Azure Gov
 5. Open up the `ProductsController.cs` file. Navigate to the `Restock` method. Replace the `<nameofQueue>` tag with the name of your queue. 
 
 ### Step 6: Connect to Redis Cache 
-#### Variations
+#### Azure Government Variations
 The only variation lies in the endpoint suffix when connecting to your Redis Cache in Azure Government.
 - "redis.cache.usgovcloudapi.net" 
-
 
 >[!Note]
 >Even if you clicked on the "Deploy to Azure Government" button, **you must still provision a redis cache by following these steps.**
