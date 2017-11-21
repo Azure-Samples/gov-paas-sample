@@ -1,7 +1,7 @@
 ---
 services: government
-platforms: aspnetcore2.0
-author: yujhong
+platforms: dotnet
+author: yujhongmicrosoft
 ---
 
 # Azure Government PaaS Sample
@@ -22,7 +22,7 @@ Getting started is simple!  To run this sample you will need:
 >
 >
 
-<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyujhongmicrosoft%2Fgov-paas-sample%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fgov-paas-sample%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/AzureGov.png" />
 </a>
 
@@ -30,7 +30,10 @@ Getting started is simple!  To run this sample you will need:
 
 From your shell or command line:
 
-`git clone https://github.com/Azure-Samples/azure-gov-paas-sample.git
+```
+git clone https://github.com/Azure-Samples/azure-gov-paas-sample.git
+```
+
 ### Step 2:  Register the sample with your Azure Active Directory tenant
 
 The project in this sample needs to be registered in your Azure AD tenant.
