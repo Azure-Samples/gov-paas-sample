@@ -137,7 +137,7 @@
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
         "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
         "sqlserverName": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
-        "databaseName": "inventorydb",
+        "databaseName": "[concat('sqldb', uniqueString(resourceGroup().id))]",
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'standardsa')]",
         "cacheName": "[concat('cache', uniqueString(resourceGroup().id))]"
         },
@@ -178,7 +178,7 @@
             "tags": {
             "displayName": "SqlServer"
             },
-            "apiVersion": "2014-04-01-preview",
+            "apiVersion": "2014-04-01",
             "properties": {
             "administratorLogin": "[parameters('administratorLogin')]",
             "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
@@ -189,7 +189,7 @@
                   "name": "[variables('databaseName')]",
                   "type": "databases",
                   "location": "[resourceGroup().location]",
-                  "apiVersion": "2014-04-01-preview",
+                  "apiVersion": "2015-01-01",
                   "dependsOn": [
                     "[concat('Microsoft.Sql/servers/', variables('sqlserverName'))]"
                   ],
@@ -204,7 +204,7 @@
                     }
                 },
                 {
-                  "apiVersion": "2014-04-01-preview",
+                  "apiVersion": "2014-04-01",
                   "name": "AllowAllWindowsAzureIps",
                   "type": "firewallrules",
                   "location": "[resourceGroup().location]",
@@ -216,7 +216,7 @@
                     "endIpAddress": "0.0.0.0"
                     }
                 }
-          ]
+            ]
         },
         {
             "apiVersion": "2015-08-01",
@@ -264,33 +264,33 @@
             }
             },
             "resources": [
-            {
-                "apiVersion": "2015-08-01",
-                "type": "config",
-                "name": "appsettings",
-                "dependsOn": [
-                "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-                ],
-                "properties": {
-                    "Storage:AccountName" : "[variables('StorageAccountName')]" , 
-                    "Storage:AccountKey" : "[concat(listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')),'2016-01-01').keys[0].value)]"
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "appsettings",
+                    "dependsOn": [
+                    "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
+                    "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+                    ],
+                    "properties": {
+                        "Storage:AccountName" : "[variables('StorageAccountName')]" , 
+                        "Storage:AccountKey" : "[concat(listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')),'2016-01-01').keys[0].value)]"
+                    }
+                },
+                {
+                  "apiVersion": "2015-08-01",
+                  "name": "web",
+                  "type": "sourcecontrols",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.Web/Sites', variables('webSiteName'))]"
+                  ],
+                  "properties": {
+                    "RepoUrl": "[parameters('repoURL')]",
+                    "branch": "[parameters('branch')]",
+                    "IsManualIntegration": true
+                  }
                 }
-            },
-            {
-              "apiVersion": "2015-08-01",
-              "name": "web",
-              "type": "sourcecontrols",
-              "dependsOn": [
-                "[resourceId('Microsoft.Web/Sites', variables('webSiteName'))]"
-              ],
-              "properties": {
-                "RepoUrl": "[parameters('repoURL')]",
-                "branch": "[parameters('branch')]",
-                "IsManualIntegration": true
-              }
-            }
-           ]
-        }
-        ]
-    }
+             ]
+         }
+     ]
+}
