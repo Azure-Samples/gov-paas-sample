@@ -264,19 +264,19 @@
             }
             },
             "resources": [
-                {
-                    "apiVersion": "2015-08-01",
-                    "type": "config",
-                    "name": "appsettings",
-                    "dependsOn": [
-                    "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
-                    "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-                    ],
-                    "properties": {
-                        "Storage:AccountName" : "[variables('StorageAccountName')]" , 
-                        "Storage:AccountKey" : "[concat(listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')),'2016-01-01').keys[0].value)]"
-                    }
-                },
+            {
+                "apiVersion": "2015-08-01",
+                "type": "config",
+                "name": "appsettings",
+                "dependsOn": [
+                "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+                ],
+                "properties": {
+                    "Storage:AccountName" : "[variables('StorageAccountName')]", 
+                    "Storage:AccountKey" : "[concat(listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')),'2016-01-01').keys[0].value)]"
+                }
+           },
                 {
                   "apiVersion": "2015-08-01",
                   "name": "web",
