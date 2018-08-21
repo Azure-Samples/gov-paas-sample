@@ -1,18 +1,16 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using InventoryApp.Resources;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 
-
-namespace InventoryApp
+namespace TrafficCaseApp
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-          
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
@@ -20,8 +18,7 @@ namespace InventoryApp
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<MyDB>();
-                    DBInitializer.Initialize(context);
+        
                 }
                 catch (Exception ex)
                 {
@@ -38,4 +35,5 @@ namespace InventoryApp
                .UseStartup<Startup>()
                .Build();
     }
+
 }

@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using InventoryApp.Models;
+using TrafficCaseApp.Models;
 
-namespace InventoryApp.Controllers
+namespace TrafficCaseApp.Controllers
 {
     public class HomeController : Controller
     {

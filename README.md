@@ -15,25 +15,19 @@ Getting started is simple!  To run this sample in Azure Government you will need
 
 
 To run locally you will additionally need:
-- Install [.NET Core](https://www.microsoft.com/net/core) 2.0.0 or later.
+- Install [.NET Core](https://www.microsoft.com/net/core) 2.1.0 or later.
 - Install [Visual Studio](https://www.visualstudio.com/vs/) 2017 version 15.3 or later with the following workloads:
     - **ASP.NET and web development**
     - **.NET Core cross-platform development**
 
 ### Run and Test Sample in Azure Government 
-#### Step 1: Deploy Resources to Azure Government
-
-<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyujhongmicrosoft%2Fgov-paas-sample%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/AzureGov.png" />
-</a> 
-
-#### Step 2:  Register the sample with your Azure Active Directory tenant
+#### Step 1: Register the sample with your Azure Active Directory tenant
 
 1. Sign in to the [Azure Government portal](https://portal.azure.us).
 2. On the top bar, click on your account and under the **Directory** list, choose the Active Directory tenant where you wish to register your application.
 3. Click on **More Services** in the left hand nav, and choose **Azure Active Directory**.
 4. Click on **App registrations** and choose **Add**.
-5. Enter a friendly name for the application, for example 'Inventory App' and select 'Web Application and/or Web API' as the Application Type. For the sign-on URL, enter the base URL for the sample, which is by default `http://localhost:57062/signin-oidc`. 
+5. Enter a friendly name for the application, for example 'Inventory App' and select 'Web Application and/or Web API' as the Application Type. For the sign-on URL, enter a temporary placeholder - for example, `https://mywebapp/signin-oidc`. 
 
     >[!Note] 
     > We will change this URL later after creating the web application and deploying to Azure Government.
@@ -43,35 +37,24 @@ To run locally you will additionally need:
     Click on **Create** to create the application.
 6. While still in the Azure portal, choose your application, click on **Settings** and choose **Properties**.
 7. Find the Application ID value and copy it to the clipboard.
-8. For the App ID URI, enter https://\<your_tenant_name\>/InventoryApp, replacing \<your_tenant_name\> with the name of your Azure AD tenant.
-#### Step 3:  Configure the sample to use your Azure AD tenant
-##### Azure Government Variations
-The only variation when setting up AAD Authorization on the Azure Government cloud is in the AAD Instance:
- - "https://login.microsoftonline.us"
+8. Find and save your Azure AD Domain name found at the top of the Overview Page under **Azure Active Directory**.
 
-##### Configure the InventoryApp project
-1. Login to the Azure Government portal and navigate to App Services -> Your Sample Web App -> Application Settings. 
-2. Find the "App Settings" section. Add "Authentication:AzureAd:ClientId" as a key and your Web App's Client ID as the value. We can find the Client ID by navigating to AAD -> App Registrations -> Your Sample Web App -> Application ID.
-3. Add "Authentication:AzureAd:TenantId" as a key and your Tenant ID as the value. We can find the Tenant ID by navigating to AAD -> Properties -> Directory Id. 
-4. Add "Authentication:AzureAd:Domain" as a key and "<your AAD tenant name>.onmicrosoft.com" as the value. 
-5. Add "ASPNETCORE_ENVIRONMENT" as a key and "Development" as the value.
-6. Click "Save" on the top left corner of the page.
+#### Step 2: Deploy Resources to Azure Government
 
-#### Step 4: Configure Azure SQL Database
-##### Azure Government Variations
-The only variation lies in the endpoint suffix when connecting to your Azure SQL Database:
-- "database.usgovcloudapi.net"
+After clicking on the "Deploy to Azure Gov" button below, you will be prompted with a ARM deployment template in the portal. Fill in the values for your AAD client id and domain name with the values saved in step 7 and 8 in the previous section. Enter the name of your choice for the App plan name parameter, and click create. 
 
-We will create the table that the application will write to. In this project find the "ProductTable.sql" file and run the query on your Azure SQL Database (using a SQL Server tool such as SQL Server Management Studio). 
+<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyujhongmicrosoft%2Fgov-paas-sample%2Fmaster%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/AzureGov.png" />
+</a> 
 
-#### Step 5: Run Sample
-Once you have gone through all of the steps above, you are ready to run your sample.
 
-1. Navigate to the [Azure Government portal](https://portal.azure.us) and click on "Azure Active Directory" -> "App Registrations -> InventoryApp -> Reply URLS. Make sure the reply url is your application url with "/signin-oidc" at the end. You can get your application url by navigating to "App Services" from the portal. 
-2. After the [sample has been deployed to your web app](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-howto-deploy-webandmobile#deploy-a-web-app-to-azure-government), you should be able to navigate to your app url and see that it ends in ".azurewebsites.us". 
-3. After logging in with an account in your AAD tenant, you should see the InventoryApp main page. You should be able to create, edit, and delete items. 
-4. If an item has the quantity of 0, the item will be written to your queue. You can see that this was done succesfully by using the [Azure Storage Explorer](https://docs.microsoft.com/azure/azure-government/documentation-government-get-started-connect-to-storage) or looking at your queue through the portal. 
-5. The items with quantity 0 are also written to the redis cache, and when you click on the "Products to Restock" button the items will be read from the cache and displayed on the page.
+#### Step 3:  Configure Reply Uri for AAD application
+
+1. After your resources have finished deploying, navigate to the web app and copy the url. 
+2. In the [Azure Government portal](https://portal.azure.us) navigate to **Azure Active Directory** and click on **App Registrations**. Click on the App that you have registered for this sample and navigate to **Settings** -> **Reply URLs**. 
+3. Edit the Reply url to be "<web app url>/signin-oidc". 
+    
+#### Now you should be able to navigate to your web app, login, and start testing!
 
 ### Run and Test Sample Locally
 

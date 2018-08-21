@@ -1,5 +1,5 @@
 ﻿
-namespace InventoryApp.Models
+namespace TrafficCaseApp.Models
 {
     public class RestockProducts
     {

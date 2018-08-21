@@ -1,0 +1,39 @@
+﻿@model List<TrafficCaseApp.Models.TrafficCase>
+
+<h2>Traffic Case Repository</h2>
+<a asp-controller="Cases" asp-action="Create" class="btn btn-primary">File New Case</a>
+<a asp-controller="Cases" asp-action="Closed" class="btn btn-primary">Closed Cases</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Violation</th>
+            <th>License</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trafficCase in this.Model)
+        {
+        <tr>
+            <td>@trafficCase.Name</td>
+            <td>@trafficCase.Date</td>
+            <td>@trafficCase.Violation</td>
+            <td>@trafficCase.License</td>
+            <td>@trafficCase.Status</td>
+            <td>
+                <div class="row">
+                    <div class="col-md-2">
+                        <a asp-controller="Cases" asp-action="Edit" asp-route-id="@trafficCase.Id" class="btn btn-info">Edit</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a asp-controller="Cases" asp-action="Delete" asp-route-id="@trafficCase.Id" class="btn btn-info">Delete</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <StartupObject>TrafficCaseApp.Program</StartupObject>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <UserSecretsId>b1c598af-a516-45ee-86bb-595fc4e16e3c</UserSecretsId>
+  </PropertyGroup>
+  <Target Name="FixStartupObjectIssue" BeforeTargets="RazorCoreCompile">
+    <PropertyGroup>
+      <StartupObject />
+    </PropertyGroup>
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Azure.Graphs" Version="0.3.1-preview" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.2.3" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>-->
+</Project>

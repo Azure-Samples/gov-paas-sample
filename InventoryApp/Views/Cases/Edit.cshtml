@@ -1,0 +1,54 @@
+﻿@model TrafficCaseApp.Models.CaseViewModel
+
+<h2>Edit Case Details</h2>
+
+<form asp-controller="Cases" asp-action="Edit" method="post" class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Case.Name" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Case.Name" class="form-control" />
+            <span asp-validation-for="Case.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Case.Date" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Case.Date" class="form-control" />
+            <span asp-validation-for="Case.Date" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Case.Violation" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Case.Violation" class="form-control" />
+            <span asp-validation-for="Case.Violation" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Case.License" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Case.License" class="form-control" />
+            <span asp-validation-for="Case.License" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Case.Status" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="@this.Model.Case.Status" asp-items="@this.Model.Statuses" class="form-control"></select>
+            <span asp-validation-for="Case.Status" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-controller="Cases" asp-action="Index" class="btn btn-warning">Cancel</a>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Case.Id" />
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
