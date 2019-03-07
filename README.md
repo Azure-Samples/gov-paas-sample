@@ -6,6 +6,10 @@ author: yujhong
 
 # Azure Government PaaS Sample
 This sample shows how to build an ASP.NET Core 2.1 MVC web application that uses Azure AD for sign-in using the OpenID Connect protocol, reads from and writes to an Azure SQL Database, writes to a Queue in Azure Storage, and uses a Redis Cache.
+## Simple ARM template example
+<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyujhongmicrosoft%2Fgov-paas-sample%2Fmaster%2Fsimpletemplate.json" target="_blank">
+    <img src="http://azuredeploy.net/AzureGov.png" />
+</a> 
 
 ## How To Run This Sample
 Getting started is simple!  To run this sample in Azure Government you will need:
