@@ -39,7 +39,7 @@
   "resources": [
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2017-08-01",
+      "apiVersion": "2015-08-01",
       "kind": "linux",
       "name": "[variables('appServicePlanName')]",
       "location": "[parameters('location')]",
@@ -53,7 +53,7 @@
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2016-08-01",
+      "apiVersion": "2015-08-01",
       "kind": "app",
       "name": "[variables('webAppPortalName')]",
       "location": "[parameters('location')]",
