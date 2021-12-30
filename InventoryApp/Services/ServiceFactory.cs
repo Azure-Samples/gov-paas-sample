@@ -1,10 +1,7 @@
-﻿using Microsoft.Azure.Documents.Client;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
+﻿using Azure.Storage;
+using Azure.Storage.Blobs;
+using Microsoft.Azure.Documents.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TrafficCaseApp.Models;
 
 namespace TrafficCaseApp.Services
@@ -17,11 +14,9 @@ namespace TrafficCaseApp.Services
         {
             this.config = config;
         }
-
-        public CloudStorageAccount CreateCloudStorageAccount() => 
-            new CloudStorageAccount(
-                new StorageCredentials(config.StorageConfig.AccountName, config.StorageConfig.AccountKey),
-                config.StorageConfig.EndPointSuffix, true);
+        public BlobServiceClient CreateCloudStorageAccount() => 
+            new BlobServiceClient(new Uri("endpoint"),
+                new StorageSharedKeyCredential(config.StorageConfig.AccountName, config.StorageConfig.AccountKey),null);
 
         public DocumentClient CreateDocumentClient() => new DocumentClient(new Uri(this.config.CosmosConfig.Uri), this.config.CosmosConfig.Key);
 

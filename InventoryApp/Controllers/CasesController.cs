@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 using TrafficCaseApp.Models;
 using TrafficCaseApp.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.Extensions.Caching.Distributed;
-using System.Net;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
 
 namespace TrafficCaseApp.Controllers
 {
