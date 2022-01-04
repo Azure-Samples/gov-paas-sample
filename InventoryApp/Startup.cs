@@ -72,7 +72,7 @@ namespace TrafficCaseApp
             services.AddTransient<QueueClient>(p => p.GetService<QueueClient>());
             services.AddTransient<ICacheClient, CacheClient>();
             services.AddTransient<ITrafficCaseRepository, TrafficCaseRepository>();
-            services.AddTransient<IQueueClient, queueClient>();
+            services.AddTransient<IQueueClient, QueueClientTem>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

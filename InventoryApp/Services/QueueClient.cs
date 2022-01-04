@@ -7,24 +7,24 @@ using TrafficCaseApp.Models;
 
 namespace TrafficCaseApp.Services
 {
-    public class queueClient : IQueueClient
+    public class QueueClientTem : IQueueClient
     {
-        private QueueServiceClient queueclient;
+        private QueueServiceClient queueClient;
         private string queueName = CosmosInfo.QueueName;
-        public queueClient(QueueServiceClient queueClient)
+        public QueueClientTem(QueueServiceClient queueClient)
         {
-            this.queueclient = queueClient;
+            this.queueClient = queueClient;
         }
 
         public async Task InitializeQueue()
         {
-            QueueClient queue = this.queueclient.GetQueueClient(queueName);
+            QueueClient queue = this.queueClient.GetQueueClient(queueName);
             await queue.CreateIfNotExistsAsync();
         }
         
         public async Task AddCaseToQueue(TrafficCase trafficCase)
         {
-            QueueClient queue = this.queueclient.GetQueueClient(queueName);
+            QueueClient queue = this.queueClient.GetQueueClient(queueName);
 
             if (trafficCase.Status == "Closed")
             {
@@ -36,7 +36,7 @@ namespace TrafficCaseApp.Services
 
         public async Task<List<TrafficCase>> GetClosedCases()
         {
-            QueueClient queue = this.queueclient.GetQueueClient(queueName);
+            QueueClient queue = this.queueClient.GetQueueClient(queueName);
             var batch = await queue.ReceiveMessageAsync();
             List<TrafficCase> closedCaseList = new List<TrafficCase>();
             closedCaseList = batch.Value.MessageId.Select(msg => JsonConvert.DeserializeObject<TrafficCase>(msg.ToString())).ToList();
