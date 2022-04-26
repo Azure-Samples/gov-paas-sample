@@ -28,9 +28,7 @@ namespace TrafficCaseApp.Services
 
             if (trafficCase.Status == "Closed")
             {
-
                 await queue.SendMessageAsync(JsonConvert.SerializeObject(trafficCase));
-
             }
         }
 
