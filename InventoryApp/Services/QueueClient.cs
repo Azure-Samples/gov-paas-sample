@@ -11,7 +11,7 @@ namespace TrafficCaseApp.Services
     {
         private QueueServiceClient queueClient;
         private string queueName = CosmosInfo.QueueName;
-        public QueueClientTem(QueueServiceClient queueClient)
+        public ServiceClient(QueueServiceClient queueClient)
         {
             this.queueClient = queueClient;
         }
