@@ -16,7 +16,7 @@ namespace TrafficCaseApp.Services
         }
         public BlobServiceClient CreateCloudStorageAccount() => 
             new BlobServiceClient(new Uri("endpoint"),
-                new StorageSharedKeyCredential(config.StorageConfig.AccountName, config.StorageConfig.AccountKey),null);
+                new StorageSharedKeyCredential(config.StorageConfig.AccountName, config.StorageConfig.AccountKey), null);
 
         public DocumentClient CreateDocumentClient() => new DocumentClient(new Uri(this.config.CosmosConfig.Uri), this.config.CosmosConfig.Key);
 
