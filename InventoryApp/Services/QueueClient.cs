@@ -7,7 +7,7 @@ using TrafficCaseApp.Models;
 
 namespace TrafficCaseApp.Services
 {
-    public class QueueClientTem : IQueueClient
+    public class ServiceClient : IQueueClient
     {
         private QueueServiceClient queueClient;
         private string queueName = CosmosInfo.QueueName;
