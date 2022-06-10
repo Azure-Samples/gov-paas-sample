@@ -1,20 +1,16 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-using TrafficCaseApp.Services;
-using TrafficCaseApp.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using TrafficCaseApp.Models;
+using TrafficCaseApp.Services;
 
 namespace TrafficCaseApp
 {
@@ -71,12 +67,12 @@ namespace TrafficCaseApp
                 options.InstanceName = "master";
             });
             services.AddTransient<ServiceFactory>();
-            services.AddTransient<CloudStorageAccount>(p => p.GetService<ServiceFactory>().CreateCloudStorageAccount());
+            services.AddTransient<BlobServiceClient>(p => p.GetService<ServiceFactory>().CreateCloudStorageAccount());
             services.AddTransient<DocumentClient>(p => p.GetService<ServiceFactory>().CreateDocumentClient());
-            services.AddTransient<CloudQueueClient>(p => p.GetService<CloudStorageAccount>().CreateCloudQueueClient());
+            services.AddTransient<QueueClient>(p => p.GetService<QueueClient>());
             services.AddTransient<ICacheClient, CacheClient>();
             services.AddTransient<ITrafficCaseRepository, TrafficCaseRepository>();
-            services.AddTransient<IQueueClient, QueueClient>();
+            services.AddTransient<IQueueClient, ServiceClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
